@@ -5,5 +5,6 @@ from .convertors import superpuperconvertor
 register_converter(superpuperconvertor, "duperpuper")
 
 urlpatterns = [
-    path('', index),
+    path('', index, name="home"),
+    path('about', about, name="about"),
 ]
