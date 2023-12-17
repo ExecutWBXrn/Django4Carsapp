@@ -5,6 +5,18 @@
     <title>{{ title }}</title>
 </head>
 <body>
+<p>{{ mainmenu|join:" | " }}</p>
 <h1>Head page</h1>
+<ul>
+{% for i in db_data %}
+    {% if i.is_published %}
+        <p>     Car: {{ i.car }}</p>
+        <p>     Year: {{ i.year }}</p>
+        {% if not forloop.last %}
+            <hr>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+</ul>
 </body>
 </html>
