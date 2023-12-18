@@ -1,26 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
-<p>
-    {% for i in mainmenu %}
-    <a href="{% url i.url %}">{{ i.title }}</a> {% if not forloop.last %} | {% endif %}
-    {% endfor %}
-</p>
-<h1>Head page</h1>
-<ul>
-{% for i in db_data %}
-    {% if i.is_published %}
-        <p>     Car: {{ i.car }}</p>
-        <p>     Year: {{ i.year }}</p>
-        {% if not forloop.last %}
-            <hr>
-        {% endif %}
-    {% endif %}
-{% endfor %}
-</ul>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'carsmaincategory/includes/hyperlinks.html' %}
+{% endblock %}

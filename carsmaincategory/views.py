@@ -23,6 +23,12 @@ def index(request):
 def about(request):
     context = {
         "title" : "lanos.com",
+        "mainmenu": [
+            {"title":"about site","url":"about"},
+            {"title":"favorites","url":"fav"},
+            {"title":"about us","url":"info"},
+            {"title":"log in","url":"log"},
+        ],
     }
     return render(request, "carsmaincategory/about.html", context=context)
 
@@ -32,6 +38,12 @@ def fav(request):
 def info(request):
     context={
         "title":"info",
+        "mainmenu": [
+            {"title":"about site","url":"about"},
+            {"title":"favorites","url":"fav"},
+            {"title":"about us","url":"info"},
+            {"title":"log in","url":"log"},
+        ],
     }
     return render(request, "carsmaincategory/finfo.html", context=context)
 
