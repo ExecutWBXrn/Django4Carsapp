@@ -7,4 +7,7 @@ register_converter(superpuperconvertor, "duperpuper")
 urlpatterns = [
     path('', index, name="home"),
     path('about/', about, name="about"),
+    path('favorites/', fav, name="fav"),
+    path('info/', info, name="info"),
+    path('log/', log, name="log"),
 ]
