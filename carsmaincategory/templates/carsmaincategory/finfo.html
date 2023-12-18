@@ -1,8 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'carsmaincategory/css/css.css' %}">
+    <link type="imagen/x-icon" rel="shortcut icon" href="{% static 'carsmaincategory/img/zaz_lanos.svg' %}">
 </head>
 <body>
 {% include 'carsmaincategory/includes/hyperlinks.html' %}
