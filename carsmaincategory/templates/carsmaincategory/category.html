@@ -1,5 +1,6 @@
 {% load static %}
 {% load category_tags %}
+{% cat1 as cat_db %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,18 +10,12 @@
     <link type="imagen/x-icon" rel="shortcut icon" href="{% static 'carsmaincategory/img/zaz_lanos.svg' %}">
 </head>
 <body>
-{% block content %} {% endblock %}
-<h1>Head page</h1>
-<ul>
-{% for i in db_data %}
-    {% if i.is_published %}
-        <p>     Car: {{ i.car }}</p>
-        <p>     Year: {{ i.year }}</p>
-        {% if not forloop.last %}
-            <hr>
-        {% endif %}
-    {% endif %}
+{% include 'carsmaincategory/includes/hyperlinks.html' %}
+<p><h1>Categories:</h1></p>
+{% for i in cat_db %}
+<li>
+    {{ i.title }}
+</li>
 {% endfor %}
-</ul>
 </body>
 </html>

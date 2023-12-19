@@ -10,4 +10,5 @@ urlpatterns = [
     path('favorites/', fav, name="fav"),
     path('info/', info, name="info"),
     path('log/', log, name="log"),
+    path('categories/', cat, name='cat'),
 ]

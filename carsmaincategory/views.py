@@ -7,15 +7,15 @@ db_data = (
     {"id":3, "car":"ME", "year":"2005" ,"is_published":True},
 )
 
+cat_db = (
+    {"id":1, "title":"sport"},
+    {"id":2, "title":"ne sport"},
+    {"id":3, "title":"lanos"},
+)
+
 def index(request):
     context = {
         "title" : "lanos.com",
-        "mainmenu" : [
-            {"title":"about site","url":"about"},
-            {"title":"favorites","url":"fav"},
-            {"title":"about us","url":"info"},
-            {"title":"log in","url":"log"},
-        ],
         "db_data":db_data,
     }
     return render(request, "carsmaincategory/index.html", context=context)
@@ -23,12 +23,6 @@ def index(request):
 def about(request):
     context = {
         "title" : "lanos.com",
-        "mainmenu": [
-            {"title":"about site","url":"about"},
-            {"title":"favorites","url":"fav"},
-            {"title":"about us","url":"info"},
-            {"title":"log in","url":"log"},
-        ],
     }
     return render(request, "carsmaincategory/about.html", context=context)
 
@@ -38,17 +32,17 @@ def fav(request):
 def info(request):
     context={
         "title":"info",
-        "mainmenu": [
-            {"title":"about site","url":"about"},
-            {"title":"favorites","url":"fav"},
-            {"title":"about us","url":"info"},
-            {"title":"log in","url":"log"},
-        ],
     }
     return render(request, "carsmaincategory/finfo.html", context=context)
 
 def log(request):
     return HttpResponse("this page in developing")
+
+def cat(request):
+    context={
+        "title":"categories"
+    }
+    return render(request, 'carsmaincategory/category.html', context=context)
 
 def Pagenotfound(request, exception):
     return HttpResponseNotFound("No hello world!")
