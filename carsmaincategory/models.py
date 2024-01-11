@@ -7,3 +7,9 @@ class Cars(models.Model):
     data_create = models.DateTimeField(auto_now_add=True)
     data_update = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title
+
+    def __repr__(self):
+        return f"\ntitle:{self.title}\ndescribe:{self.year}"
