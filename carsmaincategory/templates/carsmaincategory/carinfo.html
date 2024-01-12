@@ -1,5 +1,4 @@
 {% load static %}
-{% load category_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,19 +8,15 @@
     <link type="imagen/x-icon" rel="shortcut icon" href="{% static 'carsmaincategory/img/zaz_lanos.svg' %}">
 </head>
 <body>
-{% block content %} {% endblock %}
-<h1>Head page</h1>
-<ul>
-{% for i in db_data %}
-    {% if i.is_published %}
-        <p>     Car: {{ i.title }}</p>
-        <p>     Year: {{ i.year }}</p>
-        <p><a href="{{ i.get_absolute_url }}"><h3>further information</h3></a></p>
-        {% if not forloop.last %}
-            <hr>
-        {% endif %}
+{% include 'carsmaincategory/includes/hyperlinks.html' %}
+{% for i in db %}
+    {% if i.slug == car_slug %}
+<p>Car: {{ i.title }}</p>
+<p>Year: {{ i.year }}</p>
+<p>Further information: {{ i.content }}</p>
+<p><a href="#">Up to top</a></p>
+<p><a href="#">Up to bottom</a></p>
     {% endif %}
 {% endfor %}
-</ul>
 </body>
 </html>

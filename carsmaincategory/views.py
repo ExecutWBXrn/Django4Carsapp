@@ -1,11 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound
-
-db_data = (
-    {"id":1, "car":"lanos", "year":2007 ,"is_published":True},
-    {"id":2, "car":"Tesla cybertruck", "year":2077 ,"is_published":False},
-    {"id":3, "car":"ME", "year":"2005" ,"is_published":True},
-)
+from .models import Cars
+db_data = Cars.objects.all()
 
 cat_db = (
     {"id":1, "title":"sport"},
@@ -43,6 +39,15 @@ def cat(request):
         "title":"categories"
     }
     return render(request, 'carsmaincategory/category.html', context=context)
+
+def car_info(request, car_slug):
+    w = get_object_or_404(Cars, slug=car_slug)
+    context = {
+        "title":w.title,
+        "car_slug":car_slug,
+        "db":db_data,
+    }
+    return render(request, "carsmaincategory/carinfo.html", context=context)
 
 def Pagenotfound(request, exception):
     return HttpResponseNotFound("No hello world!")
