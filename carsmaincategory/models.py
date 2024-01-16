@@ -10,7 +10,7 @@ class Cars(models.Model):
     data_create = models.DateTimeField(auto_now_add=True)
     data_update = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
-    cat = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
+    cat = models.ForeignKey('Category', on_delete=models.PROTECT)
 
     def __str__(self):
         return self.title
@@ -28,3 +28,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("dcat", kwargs={"cat_slug":self.slug})

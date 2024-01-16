@@ -1,6 +1,5 @@
 {% load static %}
 {% load category_tags %}
-{% cat1 as cat_db %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +10,22 @@
 </head>
 <body>
 {% include 'carsmaincategory/includes/hyperlinks.html' %}
-<p><h1>Categories:</h1></p>
-{% for i in cat_db %}
-<li>
-    <a href="{{ i.get_absolute_url }}">{{ i.name }}</a>
-</li>
+{% cat1 as cat %}
+{% for j in cat %}
+{% if j.slug == cat_slug %}
+{% for i in db %}
+{% if i.cat_id == j.pk %}
+    {% if i.is_published %}
+        <p>     Car: {{ i.title }}</p>
+        <p>     Year: {{ i.year }}</p>
+        <p><a href="{{ i.get_absolute_url }}"><h3>further information</h3></a></p>
+        {% if not forloop.last %}
+            <hr>
+        {% endif %}
+    {% endif %}
+{% endif %}
+{% endfor %}
+{% endif %}
 {% endfor %}
 </body>
 </html>

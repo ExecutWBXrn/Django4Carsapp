@@ -1,13 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound
-from .models import Cars
+from .models import Cars, Category
 db_data = Cars.objects.all()
 
-cat_db = (
-    {"id":1, "title":"sport"},
-    {"id":2, "title":"ne sport"},
-    {"id":3, "title":"lanos"},
-)
+cat_db = Category.objects.all()
 
 def index(request):
     context = {
@@ -39,6 +35,15 @@ def cat(request):
         "title":"categories"
     }
     return render(request, 'carsmaincategory/category.html', context=context)
+
+def dis_cat(request, cat_slug):
+    w=get_object_or_404(Category, slug=cat_slug)
+    context = {
+        "title":w.name,
+        "cat_slug":cat_slug,
+        "db":db_data,
+    }
+    return render(request, "carsmaincategory/dis_cat.html", context=context)
 
 def car_info(request, car_slug):
     w = get_object_or_404(Cars, slug=car_slug)

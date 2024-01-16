@@ -11,5 +11,6 @@ urlpatterns = [
     path('info/', info, name="info"),
     path('log/', log, name="log"),
     path('categories/', cat, name='cat'),
+    path('categories/<slug:cat_slug>', dis_cat, name='dcat'),
     path('car/<slug:car_slug>', car_info, name="carinfo"),
 ]
