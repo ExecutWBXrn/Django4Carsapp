@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound
-from .models import Cars, Category
+from .models import Cars, Category, TagPost
 db_data = Cars.objects.all()
 
 cat_db = Category.objects.all()
+
+tag_db=TagPost.objects.all()
 
 def index(request):
     context = {
@@ -51,8 +53,26 @@ def car_info(request, car_slug):
         "title":w.title,
         "car_slug":car_slug,
         "db":db_data,
+        "w":w,
     }
     return render(request, "carsmaincategory/carinfo.html", context=context)
+
+def tag(request):
+    context={
+        "title":"tags",
+        "tags":tag_db,
+    }
+    return render(request, "carsmaincategory/tag.html", context=context)
+
+def tag_tag_slug(request, tag_slug):
+    w=get_object_or_404(TagPost, slug=tag_slug)
+    post=w.tags.filter(is_published=Cars.Status.PUBLISHED)
+    context={
+        "title":w.name,
+        "tag_slug":tag_slug,
+        "db_data":post,
+    }
+    return render(request, "carsmaincategory/tag+tag_slug.html", context=context)
 
 def Pagenotfound(request, exception):
     return HttpResponseNotFound("No hello world!")

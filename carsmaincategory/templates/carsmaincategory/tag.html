@@ -9,18 +9,11 @@
 </head>
 <body>
 {% include 'carsmaincategory/includes/hyperlinks.html' %}
-{% for i in db %}
-    {% if i.slug == car_slug %}
-<p>Car: {{ i.title }}</p>
-<p>Year: {{ i.year }}</p>
-<p>Further information: {{ i.content }}</p>
-<p>Tags: {% for j in w.tags.all %}
-    <a href="{{ j.get_absolute_url }}">{{ j.name }}</a>{% if not forloop.last %}, {% endif %}
-    {% endfor %}
-</p>
-<p><a href="#">Up to top</a></p>
-<p><a href="#">Up to bottom</a></p>
-    {% endif %}
+<p>
+Tags:
+{% for i in tags %}
+<a href="{{ i.get_absolute_url }}">{{ i.name }}</a>{% if not forloop.last %}, {% endif %}
 {% endfor %}
+</p>
 </body>
 </html>
