@@ -21,6 +21,7 @@ from carsmaincategory.views import Pagenotfound
 urlpatterns = [
     path('', include('carsmaincategory.urls')),
     path('admin/', admin.site.urls),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
 
 handler404 = Pagenotfound
