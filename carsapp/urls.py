@@ -25,3 +25,6 @@ urlpatterns = [
 ]
 
 handler404 = Pagenotfound
+
+admin.site.site_header = "Адмін панель"
+admin.site.index_title = "ExecutWBXrn's panel"
