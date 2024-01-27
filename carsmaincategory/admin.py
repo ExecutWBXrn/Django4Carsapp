@@ -8,6 +8,10 @@ class CarsAdmin(admin.ModelAdmin):
     list_editable = ['is_published']
     list_per_page = 5
     actions = ["set_published", "set_draft"]
+    search_fields = ["title", "cat__name"]
+    prepopulated_fields = {"slug": ("title", )}
+    list_filter = ["cat__name", "is_published"]
+    filter_horizontal = ["tags"]
 
     @admin.display(description="коротка інформація", ordering="content")
     def brief_info(self, car: Cars):

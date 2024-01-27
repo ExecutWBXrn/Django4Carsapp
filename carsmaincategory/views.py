@@ -30,7 +30,10 @@ def info(request):
     return render(request, "carsmaincategory/finfo.html", context=context)
 
 def log(request):
-    return HttpResponse("this page in developing")
+    context = {
+        "title":"Вхід",
+    }
+    return render(request, "carsmaincategory/log.html", context=context)
 
 def cat(request):
     context={
