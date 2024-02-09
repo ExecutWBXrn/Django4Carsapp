@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 {% include 'carsmaincategory/includes/hyperlinks.html' %}
-<h1>Head page</h1>
+{% endblock %}
+
+{% block main %}
+<div id="index_main">
+    {% for i in db_data %}
+    <a href="{{ i.get_absolute_url }}" style="text-decoration: none;">
+    <img src="{% static 'carsmaincategory/img/zaz_lanos.svg' %}" alt="{{ i.title }}">
+    <div class="des_cars">{{ i.title }} {{ i.year }}</div>
+    <div style="margin-bottom: 1%; color:black;"><b style="color: green; font-size: 1.5em; margin-left: 25%;">$$$$</b> • probeg • city</div>
+    </a>
+    {% if not forloop.last %}
+    <hr>
+    {% endif %}
+    {% endfor %}
+</div>
 {% endblock %}

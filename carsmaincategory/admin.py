@@ -16,6 +16,7 @@ class CarsAdmin(admin.ModelAdmin):
     @admin.display(description="коротка інформація", ordering="content")
     def brief_info(self, car: Cars):
         return f"overall amount symbols of content:{len(car.content)}"
+
     @admin.action(description="publish up")
     def set_published(self, request, queryset):
         q = queryset.update(is_published=Cars.Status.PUBLISHED)

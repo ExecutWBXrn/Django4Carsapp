@@ -37,7 +37,7 @@ def log(request):
 
 def cat(request):
     context={
-        "title":"categories"
+        "title":"categories",
     }
     return render(request, 'carsmaincategory/category.html', context=context)
 
@@ -50,15 +50,6 @@ def dis_cat(request, cat_slug):
     }
     return render(request, "carsmaincategory/dis_cat.html", context=context)
 
-def car_info(request, car_slug):
-    w = get_object_or_404(Cars, slug=car_slug)
-    context = {
-        "title":w.title,
-        "car_slug":car_slug,
-        "db":db_data,
-        "w":w,
-    }
-    return render(request, "carsmaincategory/carinfo.html", context=context)
 
 def tag(request):
     context={
@@ -76,6 +67,16 @@ def tag_tag_slug(request, tag_slug):
         "db_data":post,
     }
     return render(request, "carsmaincategory/tag+tag_slug.html", context=context)
+
+def car_info(request, car_slug):
+    w = get_object_or_404(Cars, slug=car_slug)
+    context = {
+        "title":w.title,
+        "car_slug":car_slug,
+        "db":db_data,
+        "w":w,
+    }
+    return render(request, "carsmaincategory/carinfo.html", context=context)
 
 def Pagenotfound(request, exception):
     return HttpResponseNotFound("No hello world!")

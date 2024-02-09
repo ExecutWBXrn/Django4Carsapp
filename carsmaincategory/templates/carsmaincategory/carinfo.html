@@ -1,26 +1,25 @@
+{% extends 'base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-    <link type="text/css" rel="stylesheet" href="{% static 'carsmaincategory/css/css.css' %}">
-    <link type="imagen/x-icon" rel="shortcut icon" href="{% static 'carsmaincategory/img/zaz_lanos.svg' %}">
-</head>
-<body>
+
+{% block content %}
 {% include 'carsmaincategory/includes/hyperlinks.html' %}
-{% for i in db %}
+{% endblock %}
+
+{% block main %}
+<div id="index_main"">
+    <div style="float:left; border: 1px solid blue; padding: 2px; border-radius: 3px; margin-top: 50px; margin-left:25%; margin-bottom: 1%; position:absolute"><a href="{% url 'home' %}" style="color: #4f74c4; text-decoration: none;">Повернутись на головну</a></div>
+    {% for i in db %}
     {% if i.slug == car_slug %}
-<p>Car: {{ i.title }}</p>
-<p>Year: {{ i.year }}</p>
-<p>Further information: {{ i.content }}</p>
-<p>Tags: {% for j in w.tags.all %}
-    <a href="{{ j.get_absolute_url }}">{{ j.name }}</a>{% if not forloop.last %}, {% endif %}
-    {% endfor %}
-</p>
-<p><a href="#">Up to top</a></p>
-<p><a href="#">Up to bottom</a></p>
+    <div class="des_cars" style="margin-top: 80px; color: #333333; display: block; margin-left: 25%;"> <ser id="ser">♡</ser> {{ i.title }} {{ i.year }}</div>
+    <div><img src="{% static 'carsmaincategory/img/zaz_lanos.svg' %}" alt="{{ i.title }}" style="border: 1px solid #bababa; float: left"><div style="width:400px; height:200px; float: left; margin-top: 15px; margin-left:1%;">Опис:{{ i.content }}</div></div>
+    <div style="margin-top:250px; margin-left: 25%; font-size: 1.5em;">{{ i.year }}</div>
+    <div style="margin-top:5px; margin-left: 25%">Теги: {% for j in w.tags.all %} {{ j.name }}; {% endfor %}</div>
+    <div style="margin-top:5px; margin-left: 25%">Категорія: <a href="{{ i.cat.get_absolute_url }}" class="url_def" style="border: none; font-size: 1em;">{{ i.cat.name }}</a>;</div>
+    <div style="margin-top:5px; margin-left: 25%">На lanos.com з {{ i.data_create }}</div>
+    <div style="margin-top:5px; margin-left: 25%; margin-bottom: 20px;">Останнє оновлення публікації: {{ i.data_update }}</div>
+
     {% endif %}
-{% endfor %}
-</body>
-</html>
+    {% endfor %}
+</div>
+{% endblock %}

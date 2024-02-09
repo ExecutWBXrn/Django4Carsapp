@@ -1,21 +1,17 @@
+{% extends 'base.html' %}
+
 {% load static %}
-{% load category_tags %}
-{% cat1 as cat_db %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-    <link type="text/css" rel="stylesheet" href="{% static 'carsmaincategory/css/css.css' %}">
-    <link type="imagen/x-icon" rel="shortcut icon" href="{% static 'carsmaincategory/img/zaz_lanos.svg' %}">
-</head>
-<body>
+
+{% block content %}
 {% include 'carsmaincategory/includes/hyperlinks.html' %}
-<p><h1>Categories:</h1></p>
-{% for i in cat_db %}
-<li>
-    <a href="{{ i.get_absolute_url }}">{{ i.name }}</a>
-</li>
-{% endfor %}
-</body>
-</html>
+{% endblock %}
+
+{% block main %}
+<div id="index_main" style="background-color: #ecf0f1">
+    <ul>
+    {% for i in cat_db %}
+    <li style="text-align: center; margin: 10px;"><a href="{{ i.get_absolute_url }}" class="url_def">{{ i.name }}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

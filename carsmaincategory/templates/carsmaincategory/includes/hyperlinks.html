@@ -1,5 +1,8 @@
+{% load static %}
 {% load category_tags %}
 {% menu as mainmenu %}
-{% for i in mainmenu %}
-<a href="{% url i.url %}">{{ i.title }}</a> {% if not forloop.last %} | {% endif %}
-{% endfor %}
+<ul id="header">
+    {% for i in mainmenu %}
+    <li><a href="{% url i.url %}">{{ i.title }}</a></li>
+    {% endfor %}
+</ul>

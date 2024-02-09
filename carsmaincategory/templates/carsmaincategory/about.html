@@ -1,14 +1,11 @@
+{% extends 'base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-    <link type="text/css" rel="stylesheet" href="{% static 'carsmaincategory/css/css.css' %}">
-    <link type="imagen/x-icon" rel="shortcut icon" href="{% static 'carsmaincategory/img/zaz_lanos.svg' %}">
-</head>
-<body>
+
+{% block content %}
 {% include 'carsmaincategory/includes/hyperlinks.html' %}
-<p>In this site i'm display impressive weird cars from random earth's point</p>
-</body>
-</html>
+{% endblock %}
+
+{% block main %}
+<div style="width: 100%; height: 600px;">In this site i'm display impressive weird cars from random earth's point</div>
+{% endblock %}

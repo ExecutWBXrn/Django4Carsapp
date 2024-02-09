@@ -1,5 +1,6 @@
 {% load static %}
 {% load category_tags %}
+{% cat1 as cat_db %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,17 +11,20 @@
 </head>
 <body>
 {% block content %} {% endblock %}
-<ul>
-{% for i in db_data %}
-    {% if i.is_published %}
-        <p>     Car: {{ i.title }}</p>
-        <p>     Year: {{ i.year }}</p>
-        <p><a href="{{ i.get_absolute_url }}"><h3>further information</h3></a></p>
-        {% if not forloop.last %}
-            <hr>
-        {% endif %}
-    {% endif %}
-{% endfor %}
-</ul>
+{% block main %} {% endblock %}
+<div id="footer">
+    <ul class="footer_main_left">
+        <li class="footer_li"><a href="https://auto.ria.com/uk/car/used/">Вживані авто</a></li>
+        <li class="footer_li"><a href="https://auto.ria.com/uk/newauto/">Нові авто</a></li>
+        <li class="footer_li"><a href="https://agro.ria.com/">Сільгосптехніка</a></li>
+
+    </ul>
+    <ul class="footer_main_right"> 
+        <li class="footer_li"><a href="https://auto.ria.com/uk/autoservice/sto/">Послуги для авто</a></li>
+        <li class="footer_li"><a href="https://auto.ria.com/uk/all_for_auto/">Сервіси</a></li>
+        <li class="footer_li"><a href="https://auto.ria.com/uk/news/">Новини</a></li>
+    </ul>
+    <a href="{% url 'home' %}"><img src="{% static 'carsmaincategory/img/zaz_lanos.svg' %}" alt="lanos.com" id="lanos_icon"></a>
+</div>
 </body>
 </html>

@@ -1,31 +1,24 @@
+{% extends 'base.html' %}
+
 {% load static %}
-{% load category_tags %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-    <link type="text/css" rel="stylesheet" href="{% static 'carsmaincategory/css/css.css' %}">
-    <link type="imagen/x-icon" rel="shortcut icon" href="{% static 'carsmaincategory/img/zaz_lanos.svg' %}">
-</head>
-<body>
+
+{% block content %}
 {% include 'carsmaincategory/includes/hyperlinks.html' %}
-{% cat1 as cat %}
-{% for j in cat %}
-{% if j.slug == cat_slug %}
-{% for i in db %}
-{% if i.cat_id == j.pk %}
-    {% if i.is_published %}
-        <p>     Car: {{ i.title }}</p>
-        <p>     Year: {{ i.year }}</p>
-        <p><a href="{{ i.get_absolute_url }}"><h3>further information</h3></a></p>
-        {% if not forloop.last %}
-            <hr>
-        {% endif %}
+{% endblock %}
+
+{% block main %}
+<div id="index_main">
+    {% for i in db %}
+    {% if i.cat.slug == cat_slug %}
+    <a href="{{ i.get_absolute_url }}" style="text-decoration: none;">
+    <img src="{% static 'carsmaincategory/img/zaz_lanos.svg' %}" alt="{{ i.title }}">
+    <div class="des_cars">{{ i.title }} {{ i.year }}</div>
+    <div style="margin-bottom: 1%; color:black;"><b style="color: green; font-size: 1.5em; margin-left: 25%;">$$$$</b> • probeg • city</div>
+    </a>
+    {% if not forloop.last %}
+    <hr>
     {% endif %}
-{% endif %}
-{% endfor %}
-{% endif %}
-{% endfor %}
-</body>
-</html>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
